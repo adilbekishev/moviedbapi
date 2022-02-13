@@ -56,8 +56,6 @@ class MoviesFragment : Fragment() {
 
         viewModel.movies.observe(viewLifecycleOwner, Observer {
             movies.addAll(it)
-            Log.d("ggg", "observe Cache : ${it.size}, movies size: ${movies.size}")
-            //Toast.makeText(requireContext(), "${movies.size}", Toast.LENGTH_SHORT).show()
             mAdapter.notifyDataSetChanged()
         })
     }
@@ -75,7 +73,6 @@ class MoviesFragment : Fragment() {
             addOnScrollListener(object : PaginationScrollListener(linearLayoutManager) {
                 override fun loadMoreItems() {
                     isLoading = true
-                    Log.d("ggg", "loadMoreItems: ")
                     viewModel.getMovies(movies.size)
                 }
 
