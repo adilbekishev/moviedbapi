@@ -20,34 +20,51 @@ class MoviesViewModel(
     val movies: LiveData<List<Movie>> = _movies
     val state = MutableLiveData<DataState>()
 
-    fun getMovies(listSize: Int) {
-        viewModelScope.launch {
-            val page = listSize / Constants.QUERY_PAGE_SIZE + 1
-            Log.d("ggg", "called page: $page, listSize:$listSize")
-            state.value = DataState.Progress
-            try {
-                val data = RetrofitInstance.service.getPopular(Constants.api_key, page)
-                Log.d("ggg", "response ${data.movies.size}")
-                saveMovies(data.movies)
-                state.value = DataState.Success("Success")
-                //repository.upsert(data.movies[0])
-            } catch (e: Exception) {
-                Log.d("ggg", e.message ?: "Error")
-                state.value = DataState.Error("Error")
+
+    fun getMovies(listSize: Int) = viewModelScope.launch {
+        val page = listSize / Constants.QUERY_PAGE_SIZE + 1
+        state.value = DataState.Progress
+        try {
+            val test = Constants.QUERY_PAGE_SIZE * (page - 2)
+            var offset = 0
+            if (test < 0) {
+                offset = 0
+            } else {
+                offset = test
             }
+            val data = getSavedMovies(Constants.QUERY_PAGE_SIZE, offset)
+            val data2 = repository.getSavedMovies2()
+
+            Log.d(
+                "ggg",
+                "cachedData size: ${data.size}, listSize:$listSize, offset: $offset, data2:${data2.size}"
+            )
+            //подумать
+            if (data.isEmpty() or (listSize != test + data.size)) {
+                val data = getMoviesApi(page)
+                _movies.value = data
+                saveMovies(data)
+                state.value = DataState.Success
+                Log.d("ggg", "from api")
+            } else {
+                _movies.value = data
+                state.value = DataState.Success
+                Log.d("ggg", "from cache")
+            }
+        } catch (e: Exception) {
+            Log.d("ggg", e.message ?: "Error")
+            state.value = DataState.Error(e.message ?: "Error")
         }
     }
+
 
     private suspend fun saveMovies(movies: List<Movie>) = repository.upsertList(movies)
 
-    fun getSavedMovies() = viewModelScope.launch {
-        state.value = DataState.Progress
-        try {
-            val data = repository.getSavedMovies()
-            state.value = DataState.Success("Success")
-        } catch (e: java.lang.Exception) {
-            Log.d("ggg", e.message ?: "Error")
-            state.value = DataState.Error("Error")
-        }
-    }
+    private suspend fun getSavedMovies(limit: Int, offset: Int) =
+        repository.getSavedMovies(limit, offset)
+
+    private suspend fun getMoviesApi(page: Int) =
+        RetrofitInstance.service.getPopular(Constants.api_key, page).movies
+
+
 }

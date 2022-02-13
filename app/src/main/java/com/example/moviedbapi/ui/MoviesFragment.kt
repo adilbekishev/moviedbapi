@@ -42,7 +42,7 @@ class MoviesFragment : Fragment() {
 
     private fun setupViewModel() {
         viewModel = (activity as MainActivity).viewModel
-
+        viewModel.getMovies(movies.size)
         viewModel.state.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is DataState.Success -> hideProgressBar()
@@ -54,21 +54,17 @@ class MoviesFragment : Fragment() {
             }
         })
 
-        viewModel.getSavedMovies().observe(viewLifecycleOwner, Observer {
-            if (it.isEmpty()) viewModel.getMovies(1)
-            else {
-                movies.clear()
-                movies.addAll(it)
-                Log.d("ggg", "observe Cache : ${it.size}, movies size: ${movies.size}")
-                //Toast.makeText(requireContext(), "${movies.size}", Toast.LENGTH_SHORT).show()
-                mAdapter.notifyDataSetChanged()
-            }
+        viewModel.movies.observe(viewLifecycleOwner, Observer {
+            movies.addAll(it)
+            Log.d("ggg", "observe Cache : ${it.size}, movies size: ${movies.size}")
+            //Toast.makeText(requireContext(), "${movies.size}", Toast.LENGTH_SHORT).show()
+            mAdapter.notifyDataSetChanged()
         })
     }
 
     private fun setUpRecycler() {
         movies = ArrayList()
-        mAdapter = MovieRecyclerAdapter(movies.sortedBy { it.id })
+        mAdapter = MovieRecyclerAdapter(movies)
         val linearLayoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 

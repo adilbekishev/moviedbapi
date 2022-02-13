@@ -17,9 +17,12 @@ interface MovieDao {
     @JvmSuppressWildcards
     suspend fun upsertList(movies: List<Movie>)
 
-    @Query("SELECT * FROM MOVIES")
-    fun getAllMovies(): LiveData<List<Movie>>
+    @Query("SELECT * FROM MOVIES LIMIT :limit OFFSET :offset")
+    suspend fun getAllMovies(limit: Int, offset: Int): List<Movie>
 
-    @Query("SELECT * FROM MOVIES WHERE id=:id")
+    @Query("SELECT * FROM MOVIES")
+    suspend fun getAllMovies2(): List<Movie>
+
+    @Query("SELECT * FROM MOVIES WHERE movieId=:id")
     suspend fun getSingleMovie(id: Int?): Movie
 }

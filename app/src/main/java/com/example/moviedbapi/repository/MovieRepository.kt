@@ -16,7 +16,9 @@ class MovieRepository(
 
     suspend fun upsert(movie: Movie) = db.getMovieDao().upsert(movie)
 
-    fun getSavedMovies() = db.getMovieDao().getAllMovies()
+    suspend fun getSavedMovies(limit: Int, offset: Int) = db.getMovieDao().getAllMovies(limit, offset)
+
+    suspend fun getSavedMovies2() = db.getMovieDao().getAllMovies2()
 
     suspend fun getSingleMovie(id: Int?) = db.getMovieDao().getSingleMovie(id)
 
