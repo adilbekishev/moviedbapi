@@ -5,9 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moviedbapi.api.RetrofitInstance
-import com.example.moviedbapi.models.Movie
-import com.example.moviedbapi.repository.MovieRepository
+import com.example.moviedbapi.data.network.RetrofitInstance
+import com.example.moviedbapi.data.models.Movie
+import com.example.moviedbapi.data.repository.MovieRepository
 import com.example.moviedbapi.utils.Constants
 import com.example.moviedbapi.utils.Constants.QUERY_PAGE_SIZE
 import com.example.moviedbapi.utils.DataState

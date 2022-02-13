@@ -1,7 +1,6 @@
 package com.example.moviedbapi.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.moviedbapi.MainActivity
-import com.example.moviedbapi.adapter.MovieRecyclerAdapter
+import com.example.moviedbapi.ui.adapter.MovieRecyclerAdapter
 import com.example.moviedbapi.databinding.FragmentMoviesBinding
-import com.example.moviedbapi.models.Movie
+import com.example.moviedbapi.data.models.Movie
 import com.example.moviedbapi.utils.DataState
 import com.example.moviedbapi.utils.PaginationScrollListener
 

@@ -1,8 +1,8 @@
-package com.example.moviedbapi.repository
+package com.example.moviedbapi.data.repository
 
-import com.example.moviedbapi.api.RetrofitInstance
-import com.example.moviedbapi.db.MovieDatabase
-import com.example.moviedbapi.models.Movie
+import com.example.moviedbapi.data.network.RetrofitInstance
+import com.example.moviedbapi.data.db.MovieDatabase
+import com.example.moviedbapi.data.models.Movie
 import com.example.moviedbapi.utils.Constants
 
 class MovieRepository(

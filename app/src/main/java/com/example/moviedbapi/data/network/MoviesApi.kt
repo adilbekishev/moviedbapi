@@ -1,6 +1,6 @@
-package com.example.moviedbapi.api
+package com.example.moviedbapi.data.network
 
-import com.example.moviedbapi.models.MoviesResponse
+import com.example.moviedbapi.data.models.MoviesResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

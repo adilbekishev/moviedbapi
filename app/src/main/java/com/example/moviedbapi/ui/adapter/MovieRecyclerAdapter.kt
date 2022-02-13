@@ -1,11 +1,11 @@
-package com.example.moviedbapi.adapter
+package com.example.moviedbapi.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedbapi.databinding.ItemMovieBinding
-import com.example.moviedbapi.models.Movie
+import com.example.moviedbapi.data.models.Movie
 import com.example.moviedbapi.utils.Constants
 
 class MovieRecyclerAdapter(private val movies: List<Movie>) :

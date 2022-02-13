@@ -1,4 +1,4 @@
-package com.example.moviedbapi.api
+package com.example.moviedbapi.data.network
 
 import com.example.moviedbapi.utils.Constants
 import retrofit2.Retrofit

@@ -1,11 +1,10 @@
-package com.example.moviedbapi.db
+package com.example.moviedbapi.data.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.moviedbapi.models.Movie
+import com.example.moviedbapi.data.models.Movie
 
 @Dao
 interface MovieDao {

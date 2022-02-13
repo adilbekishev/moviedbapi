@@ -2,7 +2,7 @@ package com.example.moviedbapi.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.moviedbapi.repository.MovieRepository
+import com.example.moviedbapi.data.repository.MovieRepository
 
 class MoviesViewModelProviderFactory(
     private val repository: MovieRepository

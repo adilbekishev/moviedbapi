@@ -1,11 +1,10 @@
-package com.example.moviedbapi.db
+package com.example.moviedbapi.data.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import com.example.moviedbapi.models.Movie
+import com.example.moviedbapi.data.models.Movie
 
 @Database(
     entities = [Movie::class],

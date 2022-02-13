@@ -1,4 +1,4 @@
-package com.example.moviedbapi.models
+package com.example.moviedbapi.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
