@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.moviedbapi.data.network.RetrofitInstance
 import com.example.moviedbapi.data.models.Movie
+import com.example.moviedbapi.data.network.RetrofitInstance
 import com.example.moviedbapi.data.repository.MovieRepository
 import com.example.moviedbapi.utils.Constants
 import com.example.moviedbapi.utils.Constants.QUERY_PAGE_SIZE
@@ -54,5 +54,8 @@ class MoviesViewModel(
     private suspend fun getMoviesApi(page: Int) =
         RetrofitInstance.service.getPopular(Constants.api_key, page).movies
 
+    fun upsertMovie(movie: Movie) = viewModelScope.launch {
+        repository.upsert(movie)
 
+    }
 }

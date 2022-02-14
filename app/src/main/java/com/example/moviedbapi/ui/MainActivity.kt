@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(mBinding.fragmentContainer.id, MoviesFragment.newInstance())
-                .commitAllowingStateLoss()
+                .commit()
         }
     }
 }

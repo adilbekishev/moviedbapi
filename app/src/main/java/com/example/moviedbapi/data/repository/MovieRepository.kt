@@ -6,18 +6,18 @@ import com.example.moviedbapi.data.models.Movie
 import com.example.moviedbapi.utils.Constants
 
 class MovieRepository(
-    val db: MovieDatabase
+    val database: MovieDatabase
 ) {
 
     suspend fun getMovies(pageNumber: Int) =
         RetrofitInstance.service.getPopular(Constants.api_key, pageNumber)
 
-    suspend fun upsertList(movies: List<Movie>) = db.getMovieDao().upsertList(movies)
+    suspend fun upsertList(movies: List<Movie>) = database.getMovieDao().upsertList(movies)
 
-    suspend fun upsert(movie: Movie) = db.getMovieDao().upsert(movie)
+    suspend fun upsert(movie: Movie) = database.getMovieDao().upsert(movie)
 
-    suspend fun getSavedMovies(limit: Int, offset: Int) = db.getMovieDao().getAllMovies(limit, offset)
+    suspend fun getSavedMovies(limit: Int, offset: Int) = database.getMovieDao().getAllMovies(limit, offset)
 
-    suspend fun getSingleMovie(id: Int?) = db.getMovieDao().getSingleMovie(id)
+    suspend fun getSingleMovie(id: Int?) = database.getMovieDao().getSingleMovie(id)
 
 }

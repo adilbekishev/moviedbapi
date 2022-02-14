@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Adil/AndroidStudioProjects/moviedbapi/app/src/main/res/drawable/bottom_corner_radius.xml" value="0.1625" />
         <entry key="..\:/Users/Adil/AndroidStudioProjects/moviedbapi/app/src/main/res/drawable/corner_radius.xml" value="0.157" />
         <entry key="..\:/Users/Adil/AndroidStudioProjects/moviedbapi/app/src/main/res/layout/activity_main.xml" value="0.24814814814814815" />
+        <entry key="..\:/Users/Adil/AndroidStudioProjects/moviedbapi/app/src/main/res/layout/fragment_movie_detail.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Adil/AndroidStudioProjects/moviedbapi/app/src/main/res/layout/fragment_movies.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Adil/AndroidStudioProjects/moviedbapi/app/src/main/res/layout/item_movie.xml" value="0.25416666666666665" />
       </map>

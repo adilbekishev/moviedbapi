@@ -8,9 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.moviedbapi.ui.adapter.MovieRecyclerAdapter
-import com.example.moviedbapi.databinding.FragmentMoviesBinding
+import com.example.moviedbapi.R
 import com.example.moviedbapi.data.models.Movie
+import com.example.moviedbapi.databinding.FragmentMoviesBinding
+import com.example.moviedbapi.ui.adapter.MovieRecyclerAdapter
 import com.example.moviedbapi.utils.DataState
 import com.example.moviedbapi.utils.PaginationScrollListener
 
@@ -61,6 +62,22 @@ class MoviesFragment : Fragment() {
     private fun setUpRecycler() {
         movies = ArrayList()
         mAdapter = MovieRecyclerAdapter(movies)
+        mAdapter.apply {
+            onItemClick = {
+                parentFragmentManager.beginTransaction().apply {
+                    replace(R.id.fragmentContainer, MovieDetailFragment.newInstance(it))
+                    addToBackStack(null)
+                    commit()
+                }
+            }
+
+            onFavouriteClick = { movie ->
+                movie.favourite = !movie.favourite
+                viewModel.upsertMovie(movie)
+                movies.find { it.movieId == movie.movieId }?.favourite = movie.favourite
+                mAdapter.notifyDataSetChanged()
+            }
+        }
         val linearLayoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
