@@ -40,10 +40,10 @@ class MovieRecyclerAdapter(private val movies: List<Movie>) :
                     onFavouriteClick?.invoke(movie)
                 }
 
-                if (movie.favourite) Glide.with(root.context).load(R.drawable.star_active)
-                    .into(favouriteImageView)
-                else Glide.with(root.context).load(R.drawable.star)
-                    .into(favouriteImageView)
+                    if (movie.favourite) Glide.with(root.context).load(R.drawable.star_active)
+                        .into(favouriteImageView)
+                    else Glide.with(root.context).load(R.drawable.star)
+                        .into(favouriteImageView)
             }
         }
     }
